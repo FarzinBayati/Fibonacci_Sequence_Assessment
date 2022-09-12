@@ -1,0 +1,17 @@
+version: '3.4'
+
+services:
+  fibonaccidb:
+    image: mcr.microsoft.com/mssql/server
+  
+  fibonacci.restapi:
+    image: ${DOCKER_REGISTRY-}fibonaccirestapi
+    build:
+      context: .
+      dockerfile: src/Fibonacci.RestApi/Dockerfile
+
+  img.fibo.front:
+    image: ${DOCKER_REGISTRY-}imgfibofront
+    build:
+      context: .
+      dockerfile: src/frontend/Dockerfile
